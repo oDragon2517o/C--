@@ -1,0 +1,3 @@
+﻿  HelloWord.cpp
+C:\Работа\C++\HelloWord\HelloWord\HelloWord.cpp(23,6): error C2084: функция "void hello(void)" уже имеет текст реализации
+C:\Работа\C++\HelloWord\HelloWord\HelloWord.cpp(17,6): message : см. предыдущее определение "hello"
