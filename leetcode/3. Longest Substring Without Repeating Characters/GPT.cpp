@@ -7,35 +7,32 @@ using namespace std;
 // Given a string s, find the length of the longest substring without repeating characters.
 class Solution
 {
+
 public:
     int lengthOfLongestSubstring(string s)
     {
+        unordered_map<char, int> charIndex;
         int maxLength = 0;
+        int start = 0;
+
         for (int i = 0; i < s.size(); i++)
         {
-            for (int j = 1; j < i; j++)
+            if (charIndex.find(s[i]) != charIndex.end() && charIndex[s[i]] >= start)
             {
-                // cout << s[i - j] << "\n";
-                if (s[i] == s[i - j])
-                {
-                    if (maxLength < j)
-                    {
-                        maxLength = j;
-                    }
-                    break;
-                }
+                start = charIndex[s[i]] + 1;
             }
-            // cout << maxLength << "\n";
+            charIndex[s[i]] = i;
+            maxLength = max(maxLength, i - start + 1);
         }
-
-        return (maxLength);
+        cout << maxLength << "\n";
+        return maxLength;
     }
 };
 // s = "abcabcbb"
 
 int main()
 {
-    string s = "abcabcbb";
+    string s = "pwwkew";
 
     Solution Cat;
     Cat.lengthOfLongestSubstring(s);
