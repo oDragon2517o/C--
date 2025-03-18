@@ -20,7 +20,9 @@ int main()
 
     thread th(DoWork);
 
-    th.detach();
+    thread th2(DoWork);
+
+    // th.detach(); // обервет поток
 
     for (size_t i = 0; i < 10; i++)
     {
@@ -28,5 +30,7 @@ int main()
         this_thread::sleep_for(chrono::milliseconds(500));
     }
 
+    th.join(); // дожидаеться завершение потока
+    th2.join();
     return 0;
 }
