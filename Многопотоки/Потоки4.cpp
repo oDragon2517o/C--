@@ -5,41 +5,34 @@
 
 using namespace std;
 
-void DoWork(int &a)
+int Sum(int a, int b)
 {
     this_thread::sleep_for(chrono::milliseconds(1000));
     cout << "========\t" << "DoWork STARTED\t=======" << endl;
     this_thread::sleep_for(chrono::milliseconds(2000));
 
-    a *= 2;
+    cout << "ID потока = " << this_thread::get_id() << "========\t" << "DoWork STOPPED\t=======" << endl;
 
-    cout << "ID потока = "
-         << this_thread::get_id()
-         << "========\t"
-         << "DoWork STOPPED\t======="
-         << endl;
-    cout << "a=" << a << endl;
+    return a + b;
 }
 
 int main()
 {
     setlocale(LC_ALL, "ru");
+    int result;
 
-    int q = 5;
+    thread t([&result]()
+             { result = Sum(2, 5); });
 
-    thread t(DoWork, std::ref(q));
-
-    t.detach();
+    // cout << "Sum result =" << result << endl;
 
     for (size_t i = 0; i < 10; i++)
     {
         std::cout << "ID потока = " << this_thread::get_id() << "\tmain\t" << i << endl;
         this_thread::sleep_for(chrono::milliseconds(500));
     }
-
-    // t.join(); // Для завершения потока DoWork
-
-    cout << q << endl;
+    t.join();
+    cout << "Sum Result = " << result << endl;
 
     return 0;
 }
