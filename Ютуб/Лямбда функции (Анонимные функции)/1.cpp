@@ -22,7 +22,10 @@ void Bar(int a)
     }
 }
 
-void Baz(int a) {}
+void Baz(int a)
+{
+    cout << "BAR" << a << endl;
+}
 
 void DoWork(vector<int> &vc, function<void(int)> func)
 {
@@ -37,10 +40,32 @@ int main()
     setlocale(LC_ALL, "ru");
     // []() {}; // Общий синтаксис
 
-    [](int a)
+     vector<int>
+        vc = {1, 51, 4, 10, 44, 98, 8, 12, 22, 29, 49};
+
+    int p = 0;
+
+    [&p](int a)
     {
-        cout << "вызвана анонимная функция с параметром - " << a << endl;
+        p = 5;
     };
+
+    // Стандарт 14
+    auto f = [&p]()
+    {
+        p = 5;
+    };
+    f();
+
+    DoWork(vc, [](int a)
+           { cout << "вызвана анонимная функция с параметром - " << a << endl; });
+
+    DoWork(vc, [](int a)
+           {     
+            if (a % 2 == 0)
+            {
+                cout << "Лямбда " << a << endl;
+            } });
 
     return 0;
 }
