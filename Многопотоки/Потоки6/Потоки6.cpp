@@ -1,7 +1,8 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
-#include "SimpleTimer.h"
+// #include "SimpleTimer.h"
+using namespace SimpleTimer2;
 
 using namespace std;
 mutex mtx;
@@ -25,7 +26,7 @@ int main()
 {
     setlocale(LC_ALL, "ru");
 
-    SimpleTimer timer;
+    SimpleTimer2 timer;
     thread t1(Print, '*');
     thread t2(Print, '#');
 
