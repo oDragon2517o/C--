@@ -73,5 +73,6 @@
         "condition_variable": "cpp",
         "mutex": "cpp",
         "cstdarg": "cpp"
-    }
+    },
+    "C_Cpp.errorSquiggles": "enabled"
 }
