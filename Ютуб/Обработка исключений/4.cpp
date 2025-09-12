@@ -61,7 +61,7 @@ int main()
 
     try
     {
-        Foo(1);
+        Foo(-1);
     }
     // catch (const int ex)
     // {
@@ -73,9 +73,9 @@ int main()
         cout << "Блок 1 Мы поймали " << ex.what() << endl;
         cout << "Состояние данных " << ex.GetDataState() << endl;
     }
-    catch (const char *ex)
+    catch (const exception &ex)
     {
-        cout << "Блок 2 Мы поймали " << ex << endl;
+        cout << "Блок 2 Мы поймали " << ex.what() << endl;
     }
     // catch (...) // Ловит все исключения
     // {
