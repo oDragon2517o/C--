@@ -1,0 +1,1 @@
+g++ main.cpp 1\Convert.cpp
