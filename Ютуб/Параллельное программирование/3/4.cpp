@@ -5,26 +5,32 @@
 
 #include <ranges>
 #include <cassert>
+#include <algorithm>
 
 using namespace std;
 
 template <typename T>
-thread SortVector(vector<T> &values)
+std::thread SortVector(vector<T> &values)
 {
-    return thread{[&values]
-                  {
-                      ranges::sort(values);
-                  }};
+    return thread{
+        [&values]
+        {
+            std::sort(values.begin(), values.end());
+        }};
 };
 
 int main()
 {
     vector<int> numbers{10, 2, -5, 3, 17, 5};
-    vector<string> string{"one", "two", "three", "foir", "five"};
+    vector<string> strings{"one", "two", "three", "foir", "five"};
     {
         auto t1 = SortVector(numbers);
-        auto t2 = SortVector(string);
+        auto t2 = SortVector(strings);
     }
-    assert(ranges::is_sorted(numbers));
-    assert(ranges::is_sorted(string));
+
+    // assert(std::ranges::is_sorted(numbers);
+    // assert(std::ranges::is_sorted(string));
+
+    assert(std::is_sorted(numbers.begin(), numbers.end()));
+    assert(std::is_sorted(strings.begin(), strings.end()));
 }

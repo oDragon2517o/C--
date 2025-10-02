@@ -72,7 +72,8 @@
     "variant": "cpp",
     "condition_variable": "cpp",
     "mutex": "cpp",
-    "cstdarg": "cpp"
+    "cstdarg": "cpp",
+    "ranges": "cpp"
   },
   "C_Cpp.errorSquiggles": "enabled",
   "C_Cpp_Runner.cCompilerPath": "gcc",
